@@ -1,0 +1,507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<meta name="keywords" content="{$keyword}" />
+<meta name="description" content="{$description}" />
+<link href="http://img.tiandaoedu.com/archives/css/scu.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/archives/css/base.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/list/css/right_main_new.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/list/css/flink.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/archives/css/xiangqingye.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/lxcp/css/hbg.css" rel="stylesheet" type="text/css" />
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="http://img.tiandaoedu.com/index/2012/js/jquery.js"></script>
+<script src="http://img.tiandaoedu.com/newpeixun/satarc/js/jb.js" type="text/javascript"></script>
+<script src="http://img.tiandaoedu.com/newpeixun/satarc/js/huizi.js" type="text/javascript"></script>
+<!--透明处理-->
+<script src="http://img.tiandaoedu.com/newpeixun/satarc/js/png.js" type="text/javascript"></script>
+<!--[if lte IE 6]>
+<script src="http://img.tiandaoedu.com/newpeixun/satarc/js/png.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a');
+    </script>
+<![endif]-->
+<!-- 滚动字 -->
+<script src="http://img.tiandaoedu.com/newpeixun/satarc/js/gdzi.js" type="text/javascript"></script>
+
+<!-- 左侧第一个轮播 -->
+<script type="text/javascript" src="http://img.tiandaoedu.com/newpeixun/satarc/js/jquery.min.js"></script>
+<!-- 主体右侧js -->
+<script src="http://img.tiandaoedu.com/newpeixun/satarc/js/js_right.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://img.tiandaoedu.com/newpeixun/satarc/js/slides.min.jquery.js"></script>
+<script src="http://img.tiandaoedu.com/newpeixun/satarc/js/xxlb.js" type="text/javascript"></script>
+<script type="text/javascript">
+function $Obj(objname){
+	return document.getElementById(objname);
+}
+
+function ShowHide(objname1,objname2){
+	var obj = $Obj(objname1);
+	var objn = $Obj(objname2);
+	if(obj.style.display != "none" ) {obj.style.display = "none"; objn.style.display = "block"; location.hash="n1";}
+	else {obj.style.display = "block"; objn.style.display = "none";}
+	
+
+ 
+}
+</script>
+</head>
+
+<body id="infor">
+<include file="./base_web/suipian/1000/46_utf8.html" />
+<!-- 顶部轮播 -->
+<div class="top_lb ofh">
+  <div class="top_con mag ofh">
+     <!--左侧轮播-->
+     <div class="lb_lf lf">
+		<div id="slides">
+		   <div class="slides_container">			
+			    <volist name ="cplb_data" id ='rows' offset="0" length='4'>	
+			    <div class="slide"><a href="{$rows.url}"><img src="{$Think.config.IMG2_URL}{$rows.imgUrl}" alt="{$rows.alt}" width="672" height="100"/></a></div>
+				</volist>
+			</div>
+			 <ul class="pagination">
+			    <volist name ="cplb_data" id ='rows' offset="0" length='4'>	
+				<li><a href="{$rows.url}">{$rows.title}</a></li>
+                </volist>
+			</ul>
+		</div>	 
+	 </div>
+     <script src="http://img.tiandaoedu.com/newpeixun/satarc/js/lunbtop.js" type="text/javascript"></script>
+	 <!--右侧轮播-->
+	 <div class="lb_rf lf"> 
+		<div id="focus">
+		  <div class="scrollArea">
+                            <ul>
+                                <li>
+                                    <div class="lbli lf">
+                                        <p>
+                                            <span>
+                                                	<a href="http://tiandaoedu.com/">留学</a>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span>
+                                               <a href="{$right_lunbo['liuxue']['url']}" target='_blank'>{$right_lunbo["liuxue"]["title"]}</a>	
+                                            </span>
+                                        </p>
+                                        <p>
+                                          	  <a href="{$right_lunbo['liuxue']['url']}" target='_blank'>{$right_lunbo["liuxue"]["description"]}</a>
+                                        </p>
+                                    </div>
+                                    <div class="ztp lf">
+                                        <a href="{$right_lunbo['liuxue']['url']}">
+                                            <img height="80" width="119" src="{$right_lunbo['liuxue']['litpic']}"
+                                            />
+                                        </a>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="lbli lf">
+                                        <p>
+                                            <span>
+                                                	<a href="http://peixun.tiandaoedu.com/">培训</a>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span>
+                                               <a href="{$right_lunbo['kaoshi']['url']}" target='_blank'>{$right_lunbo["kaoshi"]["title"]}</a>	
+                                            </span>
+                                        </p>
+                                        <p>
+                                          	  <a href="{$right_lunbo['kaoshi']['url']}" target='_blank'>{$right_lunbo["kaoshi"]["description"]}</a>
+                                        </p>
+                                    </div>
+                                    <div class="ztp lf">
+                                        <a href="{$right_lunbo['kaoshi']['url']}">
+                                            <img height="80" width="119" src="{$right_lunbo['kaoshi']['litpic']}"
+                                            />
+                                        </a>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="lbli lf">
+                                        <p>
+                                            <span>
+                                                	<a href="http://news.tiandaoedu.com/">资讯</a>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span>
+                                               <a href="{$right_lunbo['zixun']['url']}" target='_blank'>{$right_lunbo["zixun"]["title"]}</a>	
+                                            </span>
+                                        </p>
+                                        <p>
+                                          	    <a href="{$right_lunbo['zixun']['url']}" target='_blank'>{$right_lunbo["zixun"]["description"]}</a>
+                                        </p>
+                                    </div>
+                                    <div class="ztp lf">
+                                        <a href="{$right_lunbo['zixun']['url']}">
+                                            <img height="80" width="119" src="{$right_lunbo['zixun']['litpic']}"
+                                            />
+                                        </a>
+                                    </div>
+                                </li>
+                                  <li>
+                                    <div class="lbli lf">
+                                        <p>
+                                            <span>
+                                                	<a href="http://tiandaoedu.com/about/mtbd/">媒体报道</a>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span>
+                                               <a href="{$right_lunbo['mtbd']['url']}" target='_blank'>{$right_lunbo["mtbd"]["title"]}</a>	
+                                            </span>
+                                        </p>
+                                        <p>
+                                          	   <a href="{$right_lunbo['mtbd']['url']}" target='_blank'>{$right_lunbo["mtbd"]["description"]}</a>	
+                                        </p>
+                                    </div>
+                                    <div class="ztp lf">
+                                        <a href="{$right_lunbo['mtbd']['url']}">										
+                                            <img height="80" width="119" src="{$right_lunbo['mtbd']['litpic']}" />
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+		  </div>
+		  <ul class="num">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		  </ul>
+		</div>	 
+	 </div>
+  </div>
+  <div class="ssDiv ofh">
+ 
+    {$position}
+    <form class="rf" action="http://tiandaoedu.com/search/search.php" target="_blank">
+     <input name="keyword" type="text" class="text_ss grayTips" value="在本频道内搜索" />
+     <input type="hidden" name="SystemId" value="36" />
+ 
+	 <input name="" type="submit" class="btn_ss" value="搜索" />
+    </form>
+  </div>
+</div>
+
+<!-- 主体内容  -->
+<div class="xx_con mag ofh">
+<!-- 左侧内容  -->
+<div class="xx_lf lf">
+    <div class="wzlist ofh">
+	    <p class="wztit yh">{$article.subject}</p>
+		<p class="p_span"><span>责任编辑：{$article.author}</span><span>来源：{$article.source}</span><span>时间：{$article.publish_time|date="Y-m-d H:i:s",###}</span><span>点击：<script src="http://tiandaoedu.com/index.php/zyjx/Article/ViewTimes/article_id/{$article.article_id}/system_id/{$article.system_id}" type='text/javascript' language="javascript"></script>次</span></p>
+		<div class="zxbtn ofh">
+		    <style type="text/css">
+			.plf{width:225px;}
+			.rfbtn{width:415px;}
+			</style>		
+		   <div class="plf lf">
+		       <volist name ="btgg_data" id ='rows' offset="0" length='1'>	
+				<a href="{$rows.url}">{$rows.title}</a>	
+				</volist>		   
+		   </div>
+		   <div class="rfbtn rf ofh">		  
+		   <wb:follow-button uid="1912376765" type="red_3" width="100%" height="24" style="float: left;padding-top: 0;width: 211px;*width:232px;" ></wb:follow-button>		
+		   <a class="btn" href="http://tiandaoedu.com/lxcp/lxfa/">留学方案</a><a href="http://tb.53kf.com/webCompany.php?arg=10136855&style=1" class="btn btn-w btn-online-chat" rel="nofollow">在线咨询</a>
+		   </div>
+		</div>
+		
+	</div>
+ 	
+ <a name="n1"></a>	
+	 <div class="xzmk_an1">
+        {$back}
+		<p class="xsjj">{$article.summary}</p>
+		<p class="xtmk_gjc">关键词：
+			<volist name ="tags" id ='v'>			
+			<a class="tag_a" href="{$Think.config.TIANDAO_ROOT}search/search.php?keyword={$v|urlencode}&SystemId=36">{$v}</a>
+			</volist>
+        </p>
+    </div>
+<!--新增模块样式-->
+<style type="text/css">
+.xzmk_an1{width:622px; border:1px solid #e0e0e0; padding:24px 10px 30px; font-size:14px; line-height:24px; margin-top:30px;}
+.xzmk_an1_dl{ padding-bottom:25px; border-bottom:1px solid #e0e0e0; font-family:"宋体"; overflow:hidden;}
+.xzmk_an1_dl dt{width:110px; padding:6px 0 0 12px; float:left;}
+.xzmk_an1_dl dd{width:500px; float:left; color:#6b7382;}
+.xzmk_an1_dl dd p{color:#6b7382;}
+.xzmk_an1_dl dd b.xz_xx{color:#3366ff;}
+.xzmk_an1_dl dd b.xz_xx a{color:#3366ff;}
+.xzmk_an1_dl dd b.xz_xx a:hover{color:#aeb6c4;}
+.xsjj{padding:16px 0 22px; color:#6b7382;}
+.xtmk_gjc{color:#aeb6c4; font-size:12px;}
+.xza a{color:#6b7382;} 
+.xza a:hover{color:#2c70bd}
+.xzmk_an1 a.tag_a{ display:inline;  background:none; color:#aeb6c4; font-size:12px; margin-right:10px}
+.xzmk_an1 a.tag_a:hover{color:#2c70bd} 
+
+</style>
+    
+      {$con_main}
+	<div class="btwz ofh" id="all_con">	 
+	   <div class="wzy">
+       {$title_list}
+       </div>	   
+	   <div class="wzy_bot">{$body}</div>	   
+	   {$pageli}	
+	 </div>
+
+   	 <script type="text/javascript">
+	 	$('.wzy_bot .cs2').show();
+    	$(".wzy_bot .cst .cst_num").click(function () {
+       		$(this).siblings().toggle()
+	   		$(this).toggleClass("dangq_num")
+	   		$(this).parent().siblings().children(".cs1").hide()
+	   		$(this).parent().siblings().children(".cst_num").removeClass("dangq_num")
+		})
+		$('.wzy_bot .da_btn').click(function(){
+			$(this).parent('p').next('div').slideToggle(500);
+		})
+    </script>
+	
+	 <p class="gz yh">大家都在关注</p>
+	 
+	 
+	 <div class="bq ofh">
+	 
+		 <p> 				 
+		 <a href="http://tiandaoedu.com/lxcp/offer/" title="天道录取榜">天道录取榜</a>
+		 <a href="http://tiandaoedu.com/cgal/" title="留学成功案例">成功案例</a>
+		 <a href="http://tiandaoedu.com/lxcp/xzft/" title="留学成功经验">学子访谈</a>
+		 <a href="http://tiandaoedu.com/lxcp/zylq/" title="留学专业录取分析">专业录取分析</a>
+		 <a href="http://tiandaoedu.com/lxcp/offerzs/" title="天道学子offer展示">OFFER展示</a>
+		 <a href="http://tiandaoedu.com/lxcp/gxx/" title="天道学子感谢信">感谢信</a>		 		 
+		 </p> 
+		 
+	 </div>
+	 	 <!-- 分享 --> 
+	 <div class="fenxiang">
+	  <p class="lf">分享到：</p>
+	   <!-- Baidu Button BEGIN -->
+		  {$share}		
+		<!-- Baidu Button END -->
+	 </div>
+	 <!-- 分享 over --> 
+
+<!-- 无缝滚动 --> 
+<div class="rollBox">
+	<div class="LeftBotton" onmousedown="ISL_GoUp()" onmouseup="ISL_StopUp()" onmouseout="ISL_StopUp()"></div>
+	<div class="Cont" id="ISL_Cont">
+		<div class="ScrCont">
+			<div id="List1"> 
+				
+				<!-- 图片列表 begin -->
+				
+			    <volist name ="wfgd_data" id ='rows' offset="0" length='8'>					
+				<div class="pic"> <a href="{$rows.url}" ><img src="{$Think.config.IMG2_URL}{$rows.imgUrl}" alt="{$rows.alt}" width="210" height="140" /></a>
+					<p><a href="{$rows.url}">{$rows.title}</a></p>
+				</div>
+				</volist>
+				
+				<!-- 图片列表 end --> 
+			</div>
+			<div id="List2"></div>
+		</div>
+	</div>
+	<div class="RightBotton" onmousedown="ISL_GoDown()" onmouseup="ISL_StopDown()" onmouseout="ISL_StopDown()"></div>
+</div>
+<!--平铺-->
+<div class="pp_div">
+  <dl class="lf leftD">
+    <dt><a>相关度</a></dt>
+     {$relevancy}	
+  </dl>
+  <dl class="lf">
+    <dt><a>频道推荐</a></dt>
+     {$recommend}
+  </dl>
+
+</div>
+<!--平铺over-->
+<!-- 选项卡 列表2  --> 
+<div id="xklis2">
+	<ul id="xklis">
+		<li onMouseOver="secBoard(0)" class="sec2"><a href="http://bbs.tiandaoedu.com/forum-66-1.html">论坛</a></li>
+		<li onMouseOver="secBoard(1)" class="sec1"><a href="http://ask.tiandaoedu.com/">问答</a></li>
+		<li onMouseOver="secBoard(2)" class="sec1"><a href="http://tiandaoedu.com/msft/">名师</a></li>
+		<li onMouseOver="secBoard(3)" class="sec1"><a href="http://tiandaoedu.com/lxcp/xzft/">学子</a></li>
+		<li onMouseOver="secBoard(4)" class="sec1"><a href="http://news.tiandaoedu.com/">资讯</a></li>
+	</ul>
+	<ul id="xkcon">
+     {$con}  
+	</ul>
+</div> 
+<div class="xkbtn ofh">
+<a class="xkbtn1" href="http://liuxue.tiandaoedu.com/">&nbsp;留学首页</a><a class="xkbtn1" href="http://tiandaoedu.com/lxcp/">留学服务首页</a><a href="http://tb.53kf.com/webCompany.php?arg=10136855&style=1" class="xkbtn2 btn-w btn-online-chat" rel="nofollow">更多留学方案</a>
+</div>
+</div>
+<!-- 左侧内容 end -->
+<!-- 右侧内容 -->
+<div class="ycmain ofh">
+	<div class="rfmain">
+	<!--轮播图1-->
+	  <div class="logfocus1">
+		  <div class="sArea1">
+			<ul>
+			<volist name ="lbcp_data" id ='rows'>				
+			<li><a href="{$rows.url}"><img src="{$Think.config.IMG2_URL}{$rows.imgUrl}" alt="{$rows.alt}" width="305" height="255"></a></li>
+			</volist>
+			</ul>
+		  </div>
+		  <ul class="num_dd1">
+			<volist name ="lbcp_data" id ='row'>
+			<li></li>
+			</volist>
+		  </ul>
+	  </div>	
+	<!--轮播图 end-->
+	<!-- 滚动字-->
+	<div class="yell ofh">
+	  <div class="lf bgzx">最新</div>
+	  <div class="gdrf lf">
+		<div id="zibian">
+			<a target="_self" class='btnRight' id="btnRight" href="javascript:void(0);"> </a> 
+			<div class="zibox">
+			    <volist name ="wzgd_data" id ='rows' offset="0" length='1'>	
+				<a style="opacity:1;filter:alpha(opacity=100);" class="gdzi" href="{$rows.url}">{$rows.title|mb_substr= 0,18,'utf-8'}</a>	
+				</volist>	
+				
+				<volist name ="wzgd_data" id ='rows' offset="1">	
+				<a class="gdzi" href="{$rows.url}">{$rows.title|mb_substr= 0,18,'utf-8'}</a>
+				</volist>
+			</div>
+		</div>
+	  </div>
+	</div>
+ 
+	<!-- 活动日历 -->
+    <iframe width="305" style="min-height:314px;" frameborder="0" scrolling="no" src="http://api.tiandaoedu.com/calendar/calendar.class.php"></iframe>
+	<!-- 活动日历over -->
+	
+	<!--轮播图2-->
+	  <div class="logfocus2 cb">
+		  <div class="sArea2">
+			<ul>
+			<volist name ="lbba_data" id ='rows' offset="0" length='1'>				
+			<li><a href="{$rows.url}"><img src="{$Think.config.IMG2_URL}{$rows.imgUrl}" alt="{$rows.alt}" width="305" height="80"></a></li>
+			</volist>
+			</ul>
+		  </div>
+
+	  </div>	
+	<!--轮播图 end-->
+	
+	<!-- 成功案例 --> 
+	{$success}
+	 
+    <include file="./Tiandao/Tpl/Public/pinggu_new.html" />	
+	<!-- 成功案例over-->
+	<!-- 热门标签 -->
+	<div class="rmbq">
+		<p class="tit_rmbq">热门标签</p>
+<div>
+<p>
+<a href="http://us.tiandaoedu.com/" title="美国留学">美国留学</a>
+<a href="http://uk.tiandaoedu.com/" title="英国留学">英国留学</a>
+<a href="http://canada.tiandaoedu.com/" title="加拿大留学">加拿大</a>
+<a href="http://xhg.tiandaoedu.com/" title="新加坡留学">新加坡</a>
+</p>
+
+<p>
+<a href="http://xhg.tiandaoedu.com/" title="香港留学">香港留学</a>
+<a href="http://liuxue.tiandaoedu.com/fra/" title="法国留学">法国留学</a>
+<a href="http://liuxue.tiandaoedu.com/de/" title="德国留学">德国留学</a>
+
+</p>
+
+<p>
+<a href="http://liuxue.tiandaoedu.com/ned/" title="荷兰留学">荷兰留学</a> 
+<a href="http://liuxue.tiandaoedu.com/nzl/" title="新西兰留学">新西兰留学</a>
+<a href="http://liuxue.tiandaoedu.com/aus/" title="澳大利亚留学">澳大利亚留学</a>
+</p>
+<p>
+<a href="http://sat.tiandaoedu.com/" title="SAT考试">SAT</a>
+<a href="http://toefl.tiandaoedu.com/" title="托福考试">托福</a>
+<a href="http://peixun.tiandaoedu.com/ielts/" title="雅思考试">雅思</a>
+<a href="http://gmat.tiandaoedu.com/" title="GMAT考试">GMAT</a>
+<a href="http://liuxue.tiandaoedu.com/jp/" title="日本留学">日本留学</a>
+
+</p>
+
+<p>
+<a href="http://gre.tiandaoedu.com/" title="GRE考试">GRE</a>
+<a href="http://tiandaoedu.com/" title="出国留学">出国留学</a>
+<a href="http://news.tiandaoedu.com/" title="留学新闻">留学新闻</a>
+<a href="http://ranking.tiandaoedu.com/" title="世界名校排名">学校排名</a>
+</p>
+
+<p>
+<a href="http://yuanxiao.tiandaoedu.com/" title="院校库">院校库</a>
+<a href="http://parents.tiandaoedu.com/" title="家长专区">家长专区</a>
+<a href="http://tiandaoedu.com/zyjx/" title="热门专业排名">热门专业排名</a>
+</p>
+
+<p>
+<a href="http://tiandaoedu.com/cgal/lx/" title="留学成功案例">成功案例</a>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-bk-all/" title="本科留学案例">本科案例</a>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-ss-all/" title="研究生留学案例">研究生案例</a>
+</p>
+<p>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-ss-all/" title="mba留学案例">mba案例</a>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-gz-all/" title="高中留学案例">高中案例</a>
+<a href="http://peixun.tiandaoedu.com/ry/" title="日语学习">日语</a>
+</p>
+
+
+		</div>  
+	</div>
+	  
+	<!--轮播图-->
+	  <div class="logfocus3">
+		  <div class="sArea3">
+			<ul>
+			<volist name ="lbzt_data" id ='rows'>				
+			<li><a href="{$rows.url}"><img src="{$Think.config.IMG2_URL}{$rows.imgUrl}" alt="{$rows.alt}" width="305" height="255"></a></li>
+			</volist>
+			</ul>
+		  </div>
+		  <ul class="num_dd3">
+			<volist name ="lbzt_data" id ='row'>
+			<li></li>
+			</volist>
+		  </ul>
+	  </div>	
+	<!--轮播图 end-->
+	 <!-- 微博 -->
+     <div class="bx ofh">
+	    <div class="tlogo lfbor mil01 lf" style="width:152px;"><a href="http://e.weibo.com/tiandaoedu" rel="nofollow"><img src="http://img.tiandaoedu.com/lxcp/images1/td.png"></a><a class="wei_bo" href="http://e.weibo.com/tiandaoedu" rel="nofollow">天道<br>官方微博</a></div>
+		<!--<div class="tlogo lfbor mil lf"><a href="http://tiandaoedu.com/tdgj/dy/"><img src="http://img.tiandaoedu.com/lxcp/images1/td2.png"></a><a class="wei_bo" href="http://tiandaoedu.com/tdgj/dy/">天道<br>订阅</a></div>-->
+		<div class="tlogo lf" style="width:152px;"><a href="http://tiandaoedu.com/topic/wxgzh/"><img src="http://img.tiandaoedu.com/list/images1/td3.png"></a><a href="http://tiandaoedu.com/topic/wxgzh/" class="wei_bo">微信<br>扫一扫</a></div>
+	 </div> 
+	</div>
+</div>
+<!-- 右侧内容 end -->
+</div>
+<!-- 无缝滚动一  --><script src="http://img.tiandaoedu.com/newpeixun/satarc/js/wfgd.js" type="text/javascript"></script>
+<div class="kzi mag ofh">
+  <p>免责声明：①凡本站注明“本文来源：天道教育”的所有文字、图片和音视频稿件，版权均属本网所有，任何媒体、网站或个人未经本网协议授权不得转载、链接、转贴或以其他方式复制发表。已经本站协议授权的媒体、网站，在下载使用时必须注明“稿件来源：天道留学”，违者本站将依法追究责任。②本站注明稿件来源为其他媒体的文/图等稿件均为转载稿，本站转载出于非商业性的教育和科研之目的，并不意味着赞同其观点或证实其内容的真实性。如转载稿涉及版权等问题，请作者在两周内速来电或来函联系。</p>
+</div>
+<include file="./base_web/suipian/1000/53_utf8.html" />
+<include file="./Tiandao/Tpl/Public/foot_yj.html" />
+
+<div class="footbg">
+<include file="./base_web/suipian/1000/13_utf8.html" />
+</div>
+
+<style type="text/css">
+.footbg{height:214px;}
+</style>
+</body>
+</html>

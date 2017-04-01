@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$cate_info.title}</title>
+<meta name="keywords" content="{$cate_info.keywords}" />
+<meta name="description" content="{$cate_info.description}" />
+<link href="http://img.tiandaoedu.com/list/css/scu.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/list/css/base.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/list/css/right_main_new.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/list/css/flink.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/list/css/daohang.css" rel="stylesheet" type="text/css" />
+<link href="http://img.tiandaoedu.com/lxcp/css/hbg.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="http://img.tiandaoedu.com/index/2012/js/jquery.js"></script>
+<script src="http://img.tiandaoedu.com/list/js/jb.js" type="text/javascript"></script>
+<script src="http://img.tiandaoedu.com/list/js/js_right.js" type="text/javascript"></script>
+<!--透明处理-->
+<script src="http://img.tiandaoedu.com/newpeixun/satlist/js/png.js" type="text/javascript"></script>
+<!--[if lte IE 6]>
+<script src="http://img.tiandaoedu.com/newpeixun/satlist/js/png.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a');
+    </script>
+<![endif]-->
+<!--   jQuery -->
+<!-- 滚动字 -->
+<script src="http://img.tiandaoedu.com/list/js/gdzi.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+var typeid ="";
+var page = "{$Think.get.current_page}";
+var year = "{$Think.get.year|default='all'}";
+var country = "{$Think.get.country|default='all'}";
+var education = "{$Think.get.education|default='all'}";
+var tag = "{$Think.get.tag|default='all'}";
+var kind = "{$Think.get.kind}";
+var tab = "{$Think.get.tab}";
+function json_data(type,page,typeid){
+	
+	if($("#"+type+"").html().length == 0 || page != ""){
+		$("#"+type+"").html("<div  style=\"width:16px; margin:0 auto;\"><img src=http://img.tiandaoedu.com/arc/images/jz.gif /></div>");
+		$.get("/index.php/cgal/Category/jsonDate",{current_page:page,sortOrder:type,year:year,country:country,education:education,tag:tag,kind:kind,tab:tab},function(data){
+		
+			$("#"+type+"").html(data);
+		    $("a[href][target!='_self']").click(function(){
+			$(this).attr("target","_blank")
+			})			
+		});
+	}
+}
+function url(typeid){
+ 
+var n = parseInt($("#page").val());
+ 
+if(n>parseInt($("#totalpage").html()) || n<1 || isNaN(n)){
+	$("#page").val("");
+	return;
+	}
+window.location = "list_"+typeid+"_"+n+".html";
+
+} 
+
+function tiaozhuan(type,type_id,obj){
+	var type_id="{$cate_info.typeid}";
+	var fman = parseInt($(obj).parent().find('#page').val());
+	var totalpage = parseInt($(obj).parent().prev().find("span:eq(1)").text());
+	if(fman>totalpage  || fman<1 || isNaN(fman)){
+		$("#page").val("");
+	return;
+	}	
+	return json_data(type,fman,type_id,year,country,education,tag);
+	}	
+</script>
+ 
+</head>
+
+<body id="scu">
+<include file="./base_web/suipian/1000/46_utf8.html" />
+<!-- 一部分广告位 -->
+<!--tab导航-->
+<style>
+/*文字广告位高亮显示*/
+div ul li a.gaoLiang,div ul li.li2 a.gaoLiang,ul li a.gaoLiang,div a.gaoLiang,div p a.gaoLiang,table td a.gaoLiang,div p span a.gaoLiang,div p.on span a.gaoLiang,.topBanner .zyWord a.gaoLiang,.nygytd dl dt a.gaoLiang,#zibian .zibox .gaoLiang,.mp2 dt .gaoLiang{color:#EF6186}
+.topBanner{ width:1000px; margin:20px auto}
+.banner_top{ width:700px; padding:0 10px}
+.topBanner .zyWord{ width:140px;font-size:13px; height:20px; line-height:20px}
+.topBanner .zyWord a{ color:#747474}
+.topBanner .zyWord a:hover{ color:#0092D7}
+</style>
+<!-- 去掉头部导航条下广告位调用，如果将来要加上，放开这段代码，并修改模板相对应的action就好 -->
+<!-- <table cellspacing="0" cellpadding="0" class="topBanner">
+<tr>
+<volist name ="flash_data" id ='row' offset="0" length='1'>
+<if condition="$row.specialIdentity eq '文字飘红'">
+<td class="zyWord gaoLiang"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>					
+<else/>
+<td class="zyWord"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>	
+</if>
+</volist>
+<volist name ="flash_url" id ='row' offset="0" length='1'>
+<td rowspan="4" class="banner_top">
+{$row.contents}
+</td>
+</volist>
+
+
+<volist name ="flash_data" id ='row' offset="1" length='1'>					
+<if condition="$row.specialIdentity eq '文字飘红'">
+<td class="zyWord gaoLiang"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>					
+<else/>
+<td class="zyWord"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>	
+</if>
+</volist>
+</tr>
+
+<tr>
+<volist name ="flash_data" id ='row' offset="2" length='2'>					
+<if condition="$row.specialIdentity eq '文字飘红'">
+<td class="zyWord gaoLiang"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>					
+<else/>
+<td class="zyWord"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>	
+</if>				
+</volist>
+</tr>
+
+<tr>
+<volist name ="flash_data" id ='row' offset="4" length='2'>					
+<if condition="$row.specialIdentity eq '文字飘红'">
+<td class="zyWord gaoLiang"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>					
+<else/>
+<td class="zyWord"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>	
+</if>				
+</volist>
+</tr>
+<tr>
+<volist name ="flash_data" id ='row' offset="6" length='2'>					
+<if condition="$row.specialIdentity eq '文字飘红'">
+<td class="zyWord gaoLiang"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>					
+<else/>
+<td class="zyWord"><a  href="{$row.url}">{$row.title|utf8msubstr= 0,18}</a></td>	
+</if>				
+</volist>
+</tr>
+</table> -->
+ 
+<!-- 蓝条导航 -->
+<div class="blues mag ofh">
+   <a href="http://tiandaoedu.com/lxcp/offer/">天道录取榜</a><a href="http://tiandaoedu.com/cgal/" class="cur">成功案例</a><a href="http://tiandaoedu.com/lxcp/xzft/">学子访谈</a><a href="http://tiandaoedu.com/lxcp/zylq/">专业录取分析</a><a href="http://tiandaoedu.com/lxcp/offerzs/">OFFER展示</a><a href="http://tiandaoedu.com/lxcp/gxx/">感谢信</a>
+</div>
+<!-- 条件筛选 -->
+<div class="sxtj mag ofh">
+	<div class="sxhd">
+		<a href="http://tiandaoedu.com/cgal/lx/" target="_self">留学</a>
+	</div>
+	<ul class="sxtit lf">
+	  <li>按年份</li>
+	  <li>按国家</li>
+	  <li>按学历</li>
+	  <li>按标签</li>	  
+	</ul>
+	<div class="Choice mag ofh lf">
+		<ul>
+			{$year_nav}
+		</ul>
+		<ul>
+			{$country_nav}			
+		</ul>
+		<ul>
+			{$education_nav}				
+		</ul>
+		<ul class="last">
+			{$tag_nav}				
+		</ul>		
+	</div>
+</div>
+<div class="sxtj mag ofh">
+	<div class="sxhd sxhd2">
+		<a href="http://tiandaoedu.com/cgal/px/" target="_self">培训</a>		
+	</div>
+	<ul class="sxtit lf">
+	  <li>按考试</li>
+	</ul>
+	<div class="Choice mag ofh lf">
+		<ul>
+			<li><a <if condition="$cgalflag eq 'px' and $cgal_tag eq ''"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/" target="_self">全部</a></li>
+			<li><a <if condition="$cgal_tag eq 'sat'"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/sat/" target="_self">SAT</a></li>
+			<li><a <if condition="$cgal_tag eq 'toefl'"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/toefl/" target="_self">托福</a></li>
+			<li><a <if condition="$cgal_tag eq 'ielts'"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/ielts/" target="_self">雅思</a></li>
+			<li><a <if condition="$cgal_tag eq 'gre'"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/gre/" target="_self">GRE</a></li>
+			<li><a <if condition="$cgal_tag eq 'gmat'"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/gmat/" target="_self">GMAT</a></li>
+			<li><a <if condition="$cgal_tag eq 'ssat'"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/ssat/" target="_self">SSAT</a></li>
+			<li><a <if condition="$cgal_tag eq 'ry'"> class="selected"</if> href="http://tiandaoedu.com/cgal/px/ry/"  target="_self">日语</a></li>	
+		</ul>
+	</div>
+</div>
+<div class="sxtj mag ofh">
+	<div class="sxhd sxhd2">
+		<a href="http://tiandaoedu.com/cgal/hwjy/" target="_self">海外就业</a>		
+	</div>
+	<ul class="sxtit lf">
+	  <li>按就业</li>
+	</ul>
+	<div class="Choice mag ofh lf">
+		<ul>
+			<li><a <if condition="$cgalflag eq 'hwjy' and $Think.get.tag eq 'all' "> class="selected"</if> href="http://tiandaoedu.com/cgal/hwjy/all-all-all-all/" target="_self">全部</a></li>
+			<li><a <if condition="$Think.get.tag eq 'wbq'"> class="selected"</if> href="http://tiandaoedu.com/cgal/hwjy/all-all-all-wbq/" target="_self">五百强</a></li>
+			<li><a <if condition="$Think.get.tag eq 'h1b'"> class="selected"</if>  href="http://tiandaoedu.com/cgal/hwjy/all-all-all-h1b/" target="_self">H-1B</a></li>
+					
+		</ul>
+	</div>
+</div>
+<style>
+/*条件筛选*/
+.selected{font-weight:bold; color:#004C9D}
+.sxtj{width:990px;padding-left:10px;background: #f6f6f6;padding-bottom:10px;border-bottom:1px solid #fff;}
+.sxhd{float: left;width: 88px;line-height: 78px;height: 78px;text-align: center;font-weight: bold;font-size: 20px;font-family:"微软雅黑";}
+.sxhd2{height: 28px;line-height: 32px;}
+.Choice { width: 750px; }
+.Choice ul {overflow: hidden; width: 750px; }
+.Choice ul li { float: left;cursor: pointer;font-family:"宋体";color:#343434;margin:10px 10px 0 20px;}
+.Choice ul li a:hover{ color:#004C9D}
+.Choice .last { border-bottom: none; }
+.Choice li.color { color: #FFF; background: #0099FF; }
+.sxtit{width:80px;}
+.sxtit li{color:#004c9d; text-align:center;margin-top:10px;}
+</style>
+<!-- 主体内容 -->
+<div class="ztmain mag ofh" style="margin-top:0;border-top:0">
+<!-- 左侧内容 选项卡 -->
+<div class="xxk lf">
+<a id="n1" name="n1"></a>
+	<div class="tab_menu">
+		<ul>
+			<li class="look">按更新时间</li>
+			
+			<li onclick="json_data('click','',typeid,year,country,education,tag);">按点击量</li>
+			<li onclick="json_data('recommend','',typeid,year,country,education,tag);">按频道推荐</li>
+		</ul>
+	</div>
+	<div class="tab_box"> 
+		 <div>
+         {$content}	 
+         {$page}	 
+		 </div>
+		 <div class="hide" id="click"></div>
+		 <div class="hide" id="recommend"></div>
+	</div>
+	<div class="btns ofh">
+	   <a href="http://liuxue.tiandaoedu.com/">&nbsp;&nbsp;留学首页</a><a  href="http://tiandaoedu.com/lxcp/">&nbsp;留学服务首页</a><a href="http://tb.53kf.com/webCompany.php?arg=10136855&style=1" rel="nofollow">&nbsp;更多留学方案</a>
+	</div>
+</div>
+<!-- 选项卡 end -->
+
+<!-- 右侧内容 -->
+<div class="ycmain ofh">
+    <div class="rftop">
+	   <p class="pbg01"></p>
+	   <p class="pbg02"></p>
+	</div>
+	<div class="rfmain">
+	<!--轮播图1-->
+	  <div class="logfocus1">
+		  <div class="sArea1">
+			<ul>
+			<volist name ="lbcp_data" id ='row'>				
+			<li><a href="{$row.url}"><img src="{$Think.config.IMG2_URL}{$row.imgUrl}" alt="{$row.alt}" width="305" height="255"></a></li>
+			</volist>			
+			</ul>
+		  </div>
+		  <ul class="num">
+			<volist name ="lbcp_data" id ='row'>
+			<li></li>
+			</volist>			
+		  </ul>
+	  </div>	
+	<!--轮播图 end-->
+	<!-- 滚动字-->
+	<div class="yell ofh">
+	  <div class="lf bgzx">最新</div>
+	  <div class="gdrf lf">
+		<div id="zibian">
+			<a target="_self" class='btnRight' id="btnRight" href="javascript:void(0);"> </a> 
+			<div class="zibox">
+			    <volist name ="wzgd_data" id ='row' offset="0" length='1'>	
+				<a style="opacity:1;filter:alpha(opacity=100);" class="gdzi" href="{$row.url}">{$row.title|mb_substr= 0,18,'utf-8'}</a>	
+				</volist>	
+				
+				<volist name ="wzgd_data" id ='row' offset="1">	
+				<a class="gdzi" href="{$row.url}">{$row.title|mb_substr= 0,18,'utf-8'}</a>
+				</volist>										 					
+			</div>
+		</div>
+	  </div>
+	</div>
+ 
+    <!-- 活动日历 -->
+    <iframe width="305" style="min-height:314px;" frameborder="0" scrolling="no" src="http://api.tiandaoedu.com/calendar/calendar.class.php"></iframe>
+	<!-- 活动日历over -->
+   
+	<!-- 活动日历over -->	
+	
+ 	<!--轮播图2-->
+	  <div class="logfocus2">
+		  <div class="sArea2">
+			<ul>
+			<volist name ="lbba_data" id ='row' offset="0" length='1'>				
+			<li><a href="{$row.url}"><img src="{$Think.config.IMG2_URL}{$row.imgUrl}" alt="{$row.alt}" width="305" height="80"></a></li>
+			</volist>
+			</ul>
+		  </div>
+
+	  </div>	
+	<!--轮播图 end-->
+	<!-- 成功案例 --> 
+	   {$success}
+	 
+    <include file="./Tiandao/Tpl/Public/pinggu_new.html" />
+	<!-- 热门标签 -->
+	<div class="rmbq">
+		<p class="tit_rmbq">热门标签</p>
+		<div>
+<p>
+<a href="http://us.tiandaoedu.com/" title="美国留学">美国留学</a>
+<a href="http://uk.tiandaoedu.com/" title="英国留学">英国留学</a>
+<a href="http://canada.tiandaoedu.com/" title="加拿大留学">加拿大</a>
+<a href="http://xhg.tiandaoedu.com/" title="新加坡留学">新加坡</a>
+</p>
+<p>
+<a href="http://xhg.tiandaoedu.com/" title="香港留学">香港留学</a>
+<a href="http://liuxue.tiandaoedu.com/fra/" title="法国留学">法国留学</a>
+<a href="http://liuxue.tiandaoedu.com/de/" title="德国留学">德国留学</a>
+
+</p>
+<p>
+<a href="http://liuxue.tiandaoedu.com/ned/" title="荷兰留学">荷兰留学</a>
+<a href="http://liuxue.tiandaoedu.com/nzl/" title="新西兰留学">新西兰留学</a>
+<a href="http://liuxue.tiandaoedu.com/aus/" title="澳大利亚留学">澳大利亚留学</a>
+</p>
+<p>
+<a href="http://sat.tiandaoedu.com/" title="SAT考试">SAT</a>
+<a href="http://toefl.tiandaoedu.com/" title="托福考试">托福</a>
+<a href="http://peixun.tiandaoedu.com/ielts/" title="雅思考试">雅思</a>
+<a href="http://gmat.tiandaoedu.com/" title="GMAT考试">GMAT</a>
+<a href="http://liuxue.tiandaoedu.com/jp/" title="日本留学">日本留学</a>
+
+</p>
+<p>
+<a href="http://gre.tiandaoedu.com/" title="GRE考试">GRE</a>
+<a href="http://tiandaoedu.com/" title="出国留学">出国留学</a>
+<a href="http://news.tiandaoedu.com/" title="留学新闻">留学新闻</a>
+<a href="http://ranking.tiandaoedu.com/" title="世界名校排名">学校排名</a>
+</p>
+<p>
+<a href="http://yuanxiao.tiandaoedu.com/" title="院校库">院校库</a>
+<a href="http://parents.tiandaoedu.com/" title="家长专区">家长专区</a>
+<a href="http://tiandaoedu.com/zyjx/" title="热门专业排名">热门专业排名</a>
+</p>
+<p>
+<a href="http://tiandaoedu.com/cgal/lx/" title="留学成功案例">成功案例</a>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-bk-all/" title="本科留学案例">本科案例</a>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-ss-all/" title="研究生留学案例">研究生案例</a>
+</p>
+<p>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-ss-all/" title="mba留学案例">mba案例</a>
+<a href="http://tiandaoedu.com/cgal/lx/all-all-gz-all/" title="高中留学案例">高中案例</a>
+<a href="http://peixun.tiandaoedu.com/ry/" title="日语学习">日语</a>
+</p>
+		</div>
+	</div> 
+ 
+	
+	<!--轮播图-->
+	  <div class="logfocus3">
+		  <div class="sArea3">
+			<ul>
+			<volist name ="lbzt_data" id ='row'>				
+			<li><a href="{$row.url}"><img src="{$Think.config.IMG2_URL}{$row.imgUrl}" alt="{$row.alt}" width="305" height="255"></a></li>
+			</volist>
+			</ul>
+		  </div>
+		  <ul class="num_dd3">
+			<volist name ="lbzt_data" id ='row'>
+			<li></li>
+			</volist>
+		  </ul>
+	  </div>	
+	<!--轮播图 end-->
+	 <!-- 微博 -->
+	 <div class="bx ofh">
+	    <div class="tlogo lfbor mil01 lf"><a href="http://e.weibo.com/tiandaoedu"  rel="nofollow"><img src="http://img.tiandaoedu.com/lxcp/images1/td.png" /></a><a class="wei_bo" href="http://e.weibo.com/tiandaoedu"  rel="nofollow">天道<br />官方微博</a></div>
+		<div class="tlogo lfbor mil lf"><a href="http://tiandaoedu.com/tdgj/dy/"><img src="http://img.tiandaoedu.com/lxcp/images1/td2.png" /></a><a class="wei_bo" href="http://tiandaoedu.com/tdgj/dy/">天道<br />订阅</a></div>
+		<div class="tlogo lf"><a href="http://tiandaoedu.com/topic/wxgzh/"><img src="http://img.tiandaoedu.com/list/images1/td3.png" /></a><a href="http://tiandaoedu.com/topic/wxgzh/" class="wei_bo">微信<br>扫一扫</a></div>
+	 </div>
+	</div>
+</div>
+<!-- 右侧内容 end -->
+
+</div>
+
+<include file="./base_web/suipian/1000/53_utf8.html" />
+<include file="./Tiandao/Tpl/Public/foot_yj.html" />
+<div class="footbg">
+<include file="./base_web/suipian/1000/13_utf8.html" />
+</div>
+
+<style type="text/css">
+.footbg{height:214px;}
+</style>
+
+
+<!-- 轮播图 1 -->
+<script language="JavaScript" type="text/javascript">
+<!--
+var num,n=0,wid1
+function autoplay1() {
+	n++
+	if(n>=num) n = 0
+    $($(".logfocus1 .num li")[n]).addClass("current1")
+    $($(".logfocus1 .num li")[n]).siblings().removeClass("current1")
+    $($(".logfocus1 .sArea1 li")[n]).siblings().hide()
+    $($(".logfocus1 .sArea1 li")[n]).fadeTo(500,1)
+}
+$(function(){
+   num = $(".logfocus1 .sArea1 img").size()
+   $(".logfocus1 .num li:first").addClass("current1")
+   $(".logfocus1 .sArea1 li:first").fadeTo(300,1)
+   $(".logfocus1 .num li").hover(
+      function(){
+		  window.clearInterval(wid1)
+		  $(this).addClass("current1")
+		  $(this).siblings().removeClass("current1")
+		  n =  $(this).index()
+		  $($(".logfocus1 .sArea1 li")[n]).siblings().hide()
+		  $($(".logfocus1 .sArea1 li")[n]).fadeTo(500,1)
+       },
+       function(){wid1 = window.setInterval("autoplay1()",3000)}
+      )
+   wid1 = window.setInterval("autoplay1()",3000)
+})
+//-->
+</script>
+
+
+
+</body>
+</html>
